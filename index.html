@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171512">
+<meta name="description" content="A quiet corner for stories, poems, and thoughts.">
+<title>The Story Room — words worth keeping</title>
+<style>
+:root{--bg:#f6f1e8;--paper:#fffdf8;--ink:#24211d;--muted:#746d63;--accent:#9b6944;--line:#e4dbcf}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;line-height:1.65}
+header{padding:24px 6vw;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.brand{font-size:1.2rem;letter-spacing:.08em;text-transform:uppercase}.brand span{color:var(--accent)}nav a{color:var(--muted);text-decoration:none;margin-left:18px;font: .9rem Arial,sans-serif}
+.hero{padding:76px 6vw 66px;max-width:1100px;margin:auto}.eyebrow{color:var(--accent);font: .76rem Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(2.8rem,8vw,5.8rem);font-weight:normal;line-height:1.02;letter-spacing:-.045em;max-width:760px;margin:18px 0}
+.hero p{max-width:560px;color:var(--muted);font-size:1.12rem}.rule{width:64px;height:2px;background:var(--accent);margin:28px 0}
+main{padding:0 6vw 70px;max-width:1200px;margin:auto}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:24px}
+h2{font-weight:normal;font-size:2rem;margin:0}.section-head small{color:var(--muted);font: .85rem Arial,sans-serif}
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.story-card{background:var(--paper);border:1px solid var(--line);padding:26px;min-height:240px;display:flex;flex-direction:column;align-items:flex-start}
+.story-card .num{color:var(--accent);font: .76rem Arial,sans-serif;letter-spacing:.12em}.story-card h3{font-size:1.65rem;font-weight:normal;line-height:1.2;margin:16px 0 10px}.story-card p{color:var(--muted);margin:0 0 22px}.read{margin-top:auto;border:0;background:none;color:var(--accent);padding:0;font: .9rem Arial,sans-serif;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.about{margin-top:64px;padding:34px;background:#eae0d2;display:grid;grid-template-columns:1fr 2fr;gap:24px}.about h2{font-size:1.7rem}.about p{margin:0;color:#5e554b}
+footer{padding:26px 6vw;border-top:1px solid var(--line);color:var(--muted);font: .82rem Arial,sans-serif;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+dialog{width:min(760px,92vw);max-height:86vh;border:1px solid var(--line);padding:0;background:var(--paper);color:var(--ink)}dialog::backdrop{background:#171512b8}.modal-head{padding:18px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-head button{border:0;background:none;font-size:1.5rem;cursor:pointer}.modal-body{padding:28px 7%;overflow:auto}.modal-body h2{font-size:2.5rem;line-height:1.15;margin:8px 0 20px}.modal-body p{white-space:pre-wrap}
+@media(max-width:760px){.stories{grid-template-columns:1fr}.hero{padding-top:54px}.about{grid-template-columns:1fr}nav a{margin-left:10px}header{padding:18px 5vw}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">The <span>Story</span> Room</div>
+  <nav><a href="#stories">Stories</a><a href="#about">About</a></nav>
+</header>
+<section class="hero">
+  <div class="eyebrow">A little corner of the internet</div>
+  <h1>Some feelings are better told as stories.</h1>
+  <div class="rule"></div>
+  <p>Welcome to my quiet corner — a place for stories, poems, unfinished thoughts, and all the things that deserve to be written down.</p>
+</section>
+<main>
+  <section id="stories">
+    <div class="section-head"><h2>From the notebook</h2><small>Read slowly. Feel everything.</small></div>
+    <div class="stories" id="storyGrid"></div>
+  </section>
+  <section class="about" id="about">
+    <h2>A note from the writer</h2>
+    <p>This space is for the words I don't always say out loud. Thank you for being here and taking a little time to read. Replace this note with your own introduction whenever you're ready.</p>
+  </section>
+</main>
+<footer><span>© <span id="year"></span> The Story Room</span><span>Made of words and a little courage.</span></footer>
+<dialog id="reader"><div class="modal-head"><span class="eyebrow">A story to sit with</span><button id="closeReader" aria-label="Close">×</button></div><article class="modal-body"><div class="eyebrow" id="storyCategory"></div><h2 id="storyTitle"></h2><div id="storyBody"></div></article></dialog>
+<script>
+/* EDIT YOUR STORIES HERE before publishing.
+   Each story needs a title, category, short excerpt, and body.
+   Use \n in the body string for paragraph breaks. */
+const stories = [
+ {title:"The Things We Never Said",category:"Fiction · 5 min read",excerpt:"Some goodbyes happen long before anyone walks away.",body:"The last time we spoke, nothing about it felt like an ending.\\n\\nWe talked about ordinary things — the weather, a song neither of us could stop playing, a place we said we'd visit someday. We left all the important words untouched, sitting between us like letters neither person was brave enough to open.\\n\\nMaybe that's how some stories end. Not with a slammed door, but with a quiet moment that only becomes meaningful when you look back."},
+ {title:"3:17 AM",category:"Personal thoughts · 2 min read",excerpt:"The hour when memories learn to speak a little louder.",body:"At 3:17 AM, the world feels like it belongs to people who are still figuring things out. The streets are quiet. The phone is face down. And the mind, which stayed busy all day, finally starts telling the truth.\\n\\nMaybe tomorrow will be easier. For now, a page and a little honesty are enough."},
+ {title:"A Place Called Almost",category:"Short story · 4 min read",excerpt:"A story about timing, hope, and the people who almost become home.",body:"They met in the kind of season that makes everything feel temporary. The evenings were golden, the conversations had no natural ending, and every small coincidence felt like the universe leaving a note.\\n\\nThey became experts at almost: almost confessing, almost staying, almost choosing the same future. And though life carried them in different directions, for a while they had been a place of rest for each other."}
+];
+const grid=document.getElementById('storyGrid'), reader=document.getElementById('reader');
+function renderStories(){
+ grid.innerHTML='';
+ stories.forEach((s,i)=>{
+  const card=document.createElement('article');card.className='story-card';
+  const num=document.createElement('div');num.className='num';num.textContent=String(i+1).padStart(2,'0')+' / '+s.category;
+  const h=document.createElement('h3');h.textContent=s.title;
+  const p=document.createElement('p');p.textContent=s.excerpt;
+  const b=document.createElement('button');b.className='read';b.textContent='Read story ↗';b.onclick=()=>openStory(i);
+  card.append(num,h,p,b);grid.append(card);
+ });
+}
+function openStory(i){
+ const s=stories[i];document.getElementById('storyCategory').textContent=s.category;
+ document.getElementById('storyTitle').textContent=s.title;
+ const body=document.getElementById('storyBody');body.innerHTML='';
+ s.body.split('\\n\\n').forEach(par=>{const p=document.createElement('p');p.textContent=par;body.append(p)});
+ reader.showModal();
+}
+document.getElementById('closeReader').onclick=()=>reader.close();
+reader.addEventListener('click',e=>{if(e.target===reader)reader.close()});
+document.getElementById('year').textContent=new Date().getFullYear();
+renderStories();
+</script>
+</body>
+</html>
